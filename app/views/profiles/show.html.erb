@@ -1,0 +1,66 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <% if current_user.github_avatar_url.present? %>
+      <%= image_tag current_user.github_avatar_url, class: "avatar", alt: "Profile picture" %>
+    <% end %>
+    
+    <div class="profile-info">
+      <h1><%= current_user.github_username %></h1>
+      <p><%= current_user.email %></p>
+    </div>
+  </div>
+
+  <div class="github-details">
+    <% if current_user.provider == "github" %>
+      <p>
+        <%= link_to "View GitHub Profile", "https://github.com/#{current_user.github_username}", 
+            target: "_blank", 
+            class: "github-link" %>
+      </p>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  .profile-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  .profile-info h1 {
+    margin: 0;
+    color: #333;
+  }
+
+  .profile-info p {
+    margin: 0.5rem 0;
+    color: #666;
+  }
+
+  .github-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #24292e;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+  }
+
+  .github-link:hover {
+    background-color: #2c3238;
+  }
+</style> 

@@ -23,6 +23,13 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <nav>
+        <%= link_to "Profile", profile_path %>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+      </nav>
+    <% end %>
+    
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
